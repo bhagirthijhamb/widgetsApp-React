@@ -22,8 +22,8 @@ export default () => {
   return (
     <div>
       {/* <Accordion items={items} /> */}
-      {/* <Search /> */}
-      <Counter />
+      <Search />
+      {/* <Counter /> */}
     </div>
   )
 }
