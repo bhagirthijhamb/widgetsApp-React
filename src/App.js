@@ -1,6 +1,7 @@
 import React from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
+import Counter from './components/Counter';
 
 const items = [
   {
@@ -21,7 +22,13 @@ export default () => {
   return (
     <div>
       {/* <Accordion items={items} /> */}
-      <Search />
+      {/* <Search /> */}
+      <Counter />
     </div>
   )
 }
+
+// An accordion component
+// A Wikipedia  API search component
+// A Dropdown item selection component
+// A google Translate API component

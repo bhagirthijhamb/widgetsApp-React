@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 
 const Accordion = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(null)
+  // helper function
   const onTitleClick = (index) => {
     // console.log('Title Clicked', index)
     setActiveIndex(index);
@@ -23,6 +24,7 @@ const Accordion = ({ items }) => {
 
   return (
     <div className="ui styled accordion">
+      {/* <h2>{items.length}</h2> */}
       {renderedItems}
       {/* <h1>{activeIndex}</h1> */}
     </div>
