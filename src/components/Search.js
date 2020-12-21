@@ -3,9 +3,25 @@ import axios from 'axios';
 
 const Search = () => {
   const [ term, setTerm ] = useState('programming');
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [ results, setResults ] = useState([]);
 
   console.log(results);
+
+  // Update debounced term // Implemente debouncing action
+  useEffect(() => {
+    // setup timer to watch debounced term
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1000);
+
+    // if the user updates term quickly, cancel timer to setDebouncedTerm and setup a new timer
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [term]) // watch term
+
+
   // whenever we rerender our coumponent AND term ahs changed, run that arrow function right there inside useEffect. (also the first time the component renders)
   // that arrow function gets executed when our component is first rendered as well.
   // useEffect will always be invoked the first time the component is rendered.
@@ -21,26 +37,14 @@ const Search = () => {
           list: 'search',
           origin: '*',
           format: 'json',
-          srsearch: term
+          srsearch: debouncedTerm
         }
       });
       setResults(data.query.search);
     }
+    search();
+  }, [debouncedTerm])
 
-    if(term && !results.length){
-      search();
-    }
-    const timeoutId = setTimeout(() => {
-      if(term){
-        // call the helper function search
-        search();
-      }
-    }, 1000)
-
-    return () => {
-      clearTimeout(timeoutId);
-    }
-  }, [term])
 
   const renderedResults = results.map(result => {
     return (
