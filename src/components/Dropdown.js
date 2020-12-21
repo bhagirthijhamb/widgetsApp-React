@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -16,6 +16,8 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     }
     document.body.addEventListener('click', onBodyClick, { capture: true })
 
+    // cleanup code runs before every rerender
+    // and also when the component unmounts
     return () => {
       document.body.removeEventListener('click', onBodyClick, { capture: true })
     }
@@ -44,7 +46,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   return (
     <div ref={ref} className="ui form">
       <div className="field">
-        <label htmlFor="" className="label">Select a Color</label>
+        <label htmlFor="" className="label">{label}</label>
         <div 
           onClick={() => {
             // console.log('Dropdown clicked!'); 
