@@ -26,8 +26,20 @@ const Search = () => {
       });
       setResults(data.query.search);
     }
-    // call the helper functio search
-    search();
+
+    if(term && !results.length){
+      search();
+    }
+    const timeoutId = setTimeout(() => {
+      if(term){
+        // call the helper function search
+        search();
+      }
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
   }, [term])
 
   const renderedResults = results.map(result => {
