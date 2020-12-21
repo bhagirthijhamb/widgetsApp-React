@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Counter from './components/Counter';
+import Drowpdown from './components/Dropdown';
+import Dropdown from './components/Dropdown';
 
 const items = [
   {
@@ -17,13 +19,21 @@ const items = [
     content: ' You use React by creating components'
   }
 ]
+// Static array of data, so it can  be defined inside the component or outside
+const options = [
+  { label: 'The Color Red', value: 'red' },
+  { label: 'The Color Green', value: 'green' },
+  { label: 'A shade of Blue', value: 'blue' }
+]
 
 export default () => {
+  const [selected, setSelected] = useState(options[0])
   return (
     <div>
       {/* <Accordion items={items} /> */}
-      <Search />
+      {/* <Search /> */}
       {/* <Counter /> */}
+      <Dropdown options={options} selected={selected} onSelectedChange={setSelected} />
     </div>
   )
 }
