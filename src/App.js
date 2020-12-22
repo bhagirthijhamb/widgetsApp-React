@@ -4,7 +4,7 @@ import Search from './components/Search';
 import Counter from './components/Counter';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
-
+import Route from './components/Route';
 
 const items = [
   {
@@ -48,6 +48,10 @@ const showTranslate = () => {
   }
 }
 
+const showComponent = (route, component) => {
+  return window.location.pathname === route ? component : null
+}
+
 export default () => {
   const [selected, setSelected] = useState(options[0]);
   // const [showDropdown, setShowDropdown] = useState(true);
@@ -61,10 +65,23 @@ export default () => {
       {/* {showDropdown ? <Dropdown options={options} selected={selected} onSelectedChange={setSelected} /> : null} */}
 
       {/* <Translate /> */}
-      {showAccordion()}
+
+      {/* {showAccordion()}
       {showList()}
       {showDropdown()}
-      {showTranslate()}
+      {showTranslate()} */}
+
+      <Route path="/"><Accordion items={items} /></Route>
+      <Route path="/list"><Search /></Route>
+      <Route path="/dropdown">
+        <Dropdown 
+          label="Select a Color"
+          options={options}
+          selected={selected}
+          onSelectedChnage={setSelected}
+        />
+      </Route>
+      <Route path="/translate"><Translate /></Route>
     </div>
   )
 }
