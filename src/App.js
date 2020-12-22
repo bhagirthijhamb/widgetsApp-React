@@ -5,6 +5,7 @@ import Counter from './components/Counter';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
 import Route from './components/Route';
+import Header from './components/Header';
 
 const items = [
   {
@@ -71,6 +72,7 @@ export default () => {
       {showDropdown()}
       {showTranslate()} */}
 
+      <Header />
       <Route path="/"><Accordion items={items} /></Route>
       <Route path="/list"><Search /></Route>
       <Route path="/dropdown">
