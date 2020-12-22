@@ -41,7 +41,7 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
       </div>
     )
   })
-  console.log(ref.current); 
+  // console.log(ref.current); 
 
   return (
     <div ref={ref} className="ui form">
