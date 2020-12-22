@@ -80,7 +80,7 @@ export default () => {
           label="Select a Color"
           options={options}
           selected={selected}
-          onSelectedChnage={setSelected}
+          onSelectedChange={setSelected}
         />
       </Route>
       <Route path="/translate"><Translate /></Route>
