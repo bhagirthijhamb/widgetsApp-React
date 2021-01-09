@@ -1,19 +1,20 @@
-import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Convert = ({ language, text }) => {
   const [translated, setTranslated] = useState('');
   const [debouncedText, setDebouncedText] = useState(text);
+
   useEffect(() => {
     const timerId  = setTimeout(() => {
       setDebouncedText(text);
     }, 1000)
 
-    return () => {
+    return () => { // cleanup function
       clearTimeout(timerId);
     }
-  })
+  }, [text])
+  
   useEffect(() => {
     // console.log('New language or text');
     const doTranslation = async () => {
@@ -28,7 +29,7 @@ const Convert = ({ language, text }) => {
     setTranslated(data.data.translations[0].translatedText);
     }
 
-    doTranslation();
+    doTranslation(); // this function will be called anytime we first load the component, change language or chnage test
   // }, [language, text])
   }, [language, debouncedText])
   return (

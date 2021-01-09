@@ -48,7 +48,9 @@ const showTranslate = () => {
     return <Translate />
   }
 }
-
+// a reusable function to replace the above functions
+// Not a React style approach. r/t making a standalone function, better if we make a component
+// A component that will decide whne to show othe components based on the current path name that the user is visiting
 const showComponent = (route, component) => {
   return window.location.pathname === route ? component : null
 }
